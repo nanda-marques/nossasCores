@@ -107,7 +107,6 @@ td:not(:first-child) {
 .produto-img {
     width: 80px;
     height: 80px;
-    background: lightgray;
     border-radius: 4px;
     display: inline-block;
     overflow: hidden;
