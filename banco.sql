@@ -8,7 +8,7 @@ CREATE TABLE categorias (
 );
 INSERT INTO categorias (nome) VALUES 
 ("brilhantes"),
-("foscas"),
+("fosca"),
 ("acetinadas"),
 ("semibrilhosas"),
 ("emborrachadas");

@@ -1,28 +1,35 @@
+require('dotenv').config();
+
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const path = require('path');
-const app = express();
-const port = 3000;
 const session = require('express-session');
 
-app.use(session({
-    secret: 'meusegredoseguro',  // Pode ser qualquer palavra secreta
-    resave: false,
-    saveUninitialized: false
-}));
+const app = express();
+const port = process.env.PORT || 3000;
 
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production'
+    }
+}));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 const connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'aluno', // Se for para produção use uma forma para mascarar
-    database: 'nossascores',
-    port: 3302
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: Number(process.env.DB_PORT)
 });
 
 // Conectar ao banco de dados
@@ -40,6 +47,52 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Servir o formulário HTML
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'cadastro.html'));
+});
+
+// Páginas públicas
+
+app.get('/index.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/brilhantes.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'brilhantes.html'));
+});
+
+app.get('/foscas.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'foscas.html'));
+});
+
+app.get('/acetinadas.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'acetinadas.html'));
+});
+
+app.get('/semibrilhosas.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'semibrilhosas.html'));
+});
+
+app.get('/emborrachadas.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'emborrachadas.html'));
+});
+
+app.get('/compras.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'compras.html'));
+});
+
+app.get('/login.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+app.get('/cadastro.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'cadastro.html'));
+});
+
+app.get('/perfil.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'perfil.html'));
+});
+
+app.get('/pix.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pix.html'));
 });
 
 // Rota para cadastrar usuário
@@ -147,3 +200,5 @@ app.get('/carrinho', (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
+
