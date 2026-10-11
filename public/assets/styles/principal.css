@@ -52,6 +52,11 @@ nav .menu li a {
     text-decoration: none;
     font-size: 18px;
 }
+.perfil-img{
+    width: 60px;
+    height: 60px;
+    margin-top: 15px;
+}
 
 .carrinho{
     height: 84px;
