@@ -131,6 +131,14 @@ http://localhost:3000
 
 Para encerrar o servidor, pressione `Ctrl + C` no terminal.
 
+## Contribuidores
+
+| Nome | GitHub |
+|---|---|
+| Manuella Santos Cruz | [Manuellasantos](https://github.com/Manuellasantos) |
+| Matheus Bonfim Batista | [MatheusBonfim265](https://github.com/MatheusBonfim265) |
+| Fernanda Marques | [nanda-marques](https://github.com/nanda-marques) |
+
 ---
 
 <p align="center">
